@@ -35,8 +35,8 @@ public class OccurrenceOfCharacterO {
 				count=count+1;
 				
 			}
-			System.out.println("Occurance of O:"+count);
 			}
+			System.out.println("Occurance of O:"+count);
 			}
 }*/
 
@@ -49,8 +49,8 @@ public class OccurrenceOfCharacterO {
 	if(sen.charAt(i) == 'o') {
 			count++;
 		}
-		System.out.println("Occurance of O:"+count);
 		}
+		System.out.println("Occurance of O:"+count);
 		}
 }
 */
