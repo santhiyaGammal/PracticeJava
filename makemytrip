@@ -1,0 +1,55 @@
+package javaClass;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class makemytrip {
+
+	public static void main(String[] args) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://www.makemytrip.com/");
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.findElementByXPath("//div[contains(@class, 'loginModal')]").click();
+		Thread.sleep(2000);
+		driver.findElementByXPath("//span[@class = 'chNavIcon appendBottom2 chSprite chHotels']").click();
+		driver.findElementById("city").click();
+		driver.findElementByXPath("(//input[@type = 'text'])[2]").sendKeys("Goa");
+		Thread.sleep(2000);
+		driver.findElementByXPath("(//div[@class = 'flexOne'])[1]").click();
+		driver.findElementByXPath("(//div[@class = 'DayPicker-Day'])[12]").click();
+		driver.findElementByXPath("(//div[@class = 'DayPicker-Day DayPicker-Day--selected'])[4]").click();
+		driver.findElementById("guest").click();
+		driver.findElementByXPath("(//ul[@class = 'guestCounter font12 darkText'])[2]/li[2]").click();
+		driver.findElementByXPath("//button[@class = 'primaryBtn btnApply']").click();
+		driver.findElementById("hsw_search_button").click();
+		driver.findElementByClassName("mapCont").click();
+		driver.findElementByClassName("mapClose").click();
+		driver.findElementByXPath("//label[@for = 'mmLocality_checkbox_35']").click();
+		driver.findElementByXPath("//label[text() = '3 & above (Good)']").click();
+		driver.findElementByXPath("//span[text() = 'Popularity']").click();
+		driver.findElementByXPath("//li[text() = 'Price - Low to High']").click();
+		driver.manage().deleteAllCookies();
+		driver.findElementByXPath("(//p[@id = 'hlistpg_hotel_name'])[4]").click();
+		Set<String> windowHandles = driver.getWindowHandles();
+		List<String> newWindow = new ArrayList<String>(windowHandles);
+		driver.switchTo().window(newWindow.get(1));
+		String Hotelname = driver.findElementByXPath("//h1[@id = 'detpg_hotel_name']").getText();
+		System.out.println(Hotelname);
+		driver.findElementByXPath("//button[@id = 'detpg_multi_view_combo']").click();
+		String totalPrice = driver.findElementByXPath("//span[@id = 'detpg_combo_price']").getText();
+		System.out.println(totalPrice);
+		driver.close();
+		
+	}
+
+	}
+
+
